@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Runner\Console;
+namespace Yiisoft\Yii\Runner\Console;
 
 use Error;
 use ErrorException;
