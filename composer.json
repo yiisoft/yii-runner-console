@@ -1,19 +1,21 @@
 {
-    "name": "yiisoft/replace-with-package-name",
+    "name": "yiisoft/yii-runner-console",
     "type": "library",
-    "description": "_____",
+    "description": "yii-runner-console",
     "keywords": [
-        "_____"
+        "yii",
+        "runner",
+        "console"
     ],
     "homepage": "https://www.yiiframework.com/",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/_____/issues?state=open",
+        "issues": "https://github.com/yiisoft/yii-runner-console/issues?state=open",
         "forum": "https://www.yiiframework.com/forum/",
         "wiki": "https://www.yiiframework.com/wiki/",
         "irc": "irc://irc.freenode.net/yii",
         "chat": "https://t.me/yii3en",
-        "source": "https://github.com/yiisoft/_____"
+        "source": "https://github.com/yiisoft/yii-runner-console"
     },
     "funding": [
         {
@@ -28,7 +30,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "yiisoft/yii-runner": "@dev",
+        "yiisoft/yii-console": "@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -38,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yiisoft\\_____\\": "src"
+            "Yiisoft\\YiiRunner\\Console\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yiisoft\\_____\\Tests\\": "tests"
+            "Yiisoft\\YiiRunner\\Console\\Tests\\": "tests"
         }
     },
     "config": {
