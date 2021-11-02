@@ -39,7 +39,7 @@ In your console entry script do the following:
 
 declare(strict_types=1);
 
-use Yii\Runner\Console\ConsoleApplicationRunner;
+use Yiisoft\Yii\Runner\Console\ConsoleApplicationRunner;
 
 require_once __DIR__ . '/preload.php';
 
@@ -75,7 +75,7 @@ The code is statically analyzed with [Psalm](https://psalm.dev/). To run static 
 
 ## License
 
-The Yii Runner Console is free software. It is released under the terms of the BSD License.
+The Yii Console Runner is free software. It is released under the terms of the BSD License.
 Please see [`LICENSE`](./LICENSE.md) for more information.
 
 Maintained by [Yii Software](https://www.yiiframework.com/).
