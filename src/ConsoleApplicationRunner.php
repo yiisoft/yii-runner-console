@@ -26,8 +26,8 @@ final class ConsoleApplicationRunner implements RunnerInterface
     private bool $debug;
     private string $rootPath;
     private ?string $environment;
-    private ?Config $config;
-    private ?ContainerInterface $container;
+    private ?Config $config = null;
+    private ?ContainerInterface $container = null;
     private ?string $bootstrapGroup = 'bootstrap-console';
 
     public function __construct(string $rootPath, bool $debug, ?string $environment)
