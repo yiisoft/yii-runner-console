@@ -8,6 +8,7 @@ use Error;
 use ErrorException;
 use Exception;
 use Psr\Container\ContainerInterface;
+use Yiisoft\Config\Config;
 use Yiisoft\Di\Container;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
@@ -23,8 +24,11 @@ use Yiisoft\Yii\Runner\RunnerInterface;
 final class ConsoleApplicationRunner implements RunnerInterface
 {
     private bool $debug;
-    private ?string $environment;
     private string $rootPath;
+    private ?string $environment;
+    private ?Config $config = null;
+    private ?ContainerInterface $container = null;
+    private ?string $bootstrapGroup = 'bootstrap-console';
 
     public function __construct(string $rootPath, bool $debug, ?string $environment)
     {
@@ -33,15 +37,43 @@ final class ConsoleApplicationRunner implements RunnerInterface
         $this->environment = $environment;
     }
 
+    public function withBootstrap(string $bootstrapGroup): self
+    {
+        $new = clone $this;
+        $new->bootstrapGroup = $bootstrapGroup;
+        return $new;
+    }
+
+    public function withoutBootstrap(): self
+    {
+        $new = clone $this;
+        $new->bootstrapGroup = null;
+        return $new;
+    }
+
+    public function withConfig(Config $config): self
+    {
+        $new = clone $this;
+        $new->config = $config;
+        return $new;
+    }
+
+    public function withContainer(ContainerInterface $container): self
+    {
+        $new = clone $this;
+        $new->container = $container;
+        return $new;
+    }
+
     /**
      * @throws CircularReferenceException|ErrorException|Exception|InvalidConfigException|NotFoundException
      * @throws NotInstantiableException
      */
     public function run(): void
     {
-        $config = ConfigFactory::create($this->rootPath, $this->environment);
+        $config = $this->config ?? ConfigFactory::create($this->rootPath, $this->environment);
 
-        $container = new Container(
+        $container = $this->container ?? new Container(
             $config->get('console'),
             $config->get('providers-console'),
             [],
@@ -49,10 +81,14 @@ final class ConsoleApplicationRunner implements RunnerInterface
             $config->get('delegates-console')
         );
 
-        $container = $container->get(ContainerInterface::class);
+        if ($container instanceof Container) {
+            $container = $container->get(ContainerInterface::class);
+        }
 
         // Run bootstrap
-        $this->runBootstrap($container, $config->get('bootstrap-console'));
+        if ($this->bootstrapGroup !== null) {
+            $this->runBootstrap($container, $config->get($this->bootstrapGroup));
+        }
 
         /** @var Application */
         $application = $container->get(Application::class);
