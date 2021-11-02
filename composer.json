@@ -1,7 +1,7 @@
 {
     "name": "yiisoft/yii-runner-console",
     "type": "library",
-    "description": "yii-runner-console",
+    "description": "Console application runner",
     "keywords": [
         "yii",
         "runner",
