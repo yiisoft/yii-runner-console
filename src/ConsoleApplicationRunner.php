@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Yiisoft\Yii\Runner\Console;
 
-use Error;
 use ErrorException;
 use Exception;
 use Psr\Container\ContainerInterface;
+use Throwable;
 use Yiisoft\Config\Config;
 use Yiisoft\Di\Container;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
@@ -97,8 +97,8 @@ final class ConsoleApplicationRunner implements RunnerInterface
         try {
             $application->start();
             $exitCode = $application->run(null, new ConsoleBufferedOutput());
-        } catch (Error $error) {
-            $application->renderThrowable($error, new ConsoleBufferedOutput());
+        } catch (Throwable $throwable) {
+            $application->renderThrowable($throwable, new ConsoleBufferedOutput());
         } finally {
             $application->shutdown($exitCode);
             exit($exitCode);
