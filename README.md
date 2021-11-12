@@ -41,6 +41,7 @@ declare(strict_types=1);
 
 use Yiisoft\Yii\Runner\Console\ConsoleApplicationRunner;
 
+require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/preload.php';
 
 (new ConsoleApplicationRunner(__DIR__, $_ENV['YII_DEBUG'], $_ENV['YII_ENV']))->run();
