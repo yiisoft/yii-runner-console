@@ -21,6 +21,9 @@ use Yiisoft\Yii\Runner\BootstrapRunner;
 use Yiisoft\Yii\Runner\ConfigFactory;
 use Yiisoft\Yii\Runner\RunnerInterface;
 
+/**
+ * ConsoleApplicationRunner runs the Yii console application.
+ */
 final class ConsoleApplicationRunner implements RunnerInterface
 {
     private bool $debug;
@@ -30,6 +33,11 @@ final class ConsoleApplicationRunner implements RunnerInterface
     private ?ContainerInterface $container = null;
     private ?string $bootstrapGroup = 'bootstrap-console';
 
+    /**
+     * @param string $rootPath The absolute path to the project root.
+     * @param bool $debug Whether the debug mode is enabled.
+     * @param string|null $environment The environment name.
+     */
     public function __construct(string $rootPath, bool $debug, ?string $environment)
     {
         $this->rootPath = $rootPath;
@@ -37,6 +45,13 @@ final class ConsoleApplicationRunner implements RunnerInterface
         $this->environment = $environment;
     }
 
+    /**
+     * Returns a new instance with the specified bootstrap configuration group name.
+     *
+     * @param string $bootstrapGroup The bootstrap configuration group name.
+     *
+     * @return self
+     */
     public function withBootstrap(string $bootstrapGroup): self
     {
         $new = clone $this;
@@ -44,6 +59,11 @@ final class ConsoleApplicationRunner implements RunnerInterface
         return $new;
     }
 
+    /**
+     * Returns a new instance and disables the use of bootstrap configuration group.
+     *
+     * @return self
+     */
     public function withoutBootstrap(): self
     {
         $new = clone $this;
@@ -51,6 +71,13 @@ final class ConsoleApplicationRunner implements RunnerInterface
         return $new;
     }
 
+    /**
+     * Returns a new instance with the specified config instance {@see Config}.
+     *
+     * @param Config $config The config instance.
+     *
+     * @return self
+     */
     public function withConfig(Config $config): self
     {
         $new = clone $this;
@@ -58,6 +85,13 @@ final class ConsoleApplicationRunner implements RunnerInterface
         return $new;
     }
 
+    /**
+     * Returns a new instance with the specified container instance {@see ContainerInterface}.
+     *
+     * @param ContainerInterface $container The container instance.
+     *
+     * @return self
+     */
     public function withContainer(ContainerInterface $container): self
     {
         $new = clone $this;
@@ -66,6 +100,8 @@ final class ConsoleApplicationRunner implements RunnerInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
      * @throws CircularReferenceException|ErrorException|Exception|InvalidConfigException|NotFoundException
      * @throws NotInstantiableException
      */
