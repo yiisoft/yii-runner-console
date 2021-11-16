@@ -22,7 +22,7 @@ use Yiisoft\Yii\Runner\ConfigFactory;
 use Yiisoft\Yii\Runner\RunnerInterface;
 
 /**
- * ConsoleApplicationRunner runs the Yii console application.
+ * `ConsoleApplicationRunner` runs the Yii console application.
  */
 final class ConsoleApplicationRunner implements RunnerInterface
 {
