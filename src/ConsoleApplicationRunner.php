@@ -10,6 +10,7 @@ use Psr\Container\ContainerInterface;
 use Throwable;
 use Yiisoft\Config\Config;
 use Yiisoft\Di\Container;
+use Yiisoft\Di\ContainerConfig;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
 use Yiisoft\Definitions\Exception\NotFoundException;
@@ -109,13 +110,16 @@ final class ConsoleApplicationRunner implements RunnerInterface
     {
         $config = $this->config ?? ConfigFactory::create($this->rootPath, $this->environment);
 
-        $container = $this->container ?? new Container(
-            $config->get('console'),
-            $config->get('providers-console'),
-            [],
-            $this->debug,
-            $config->get('delegates-console')
-        );
+        $container = $this->container;
+        if ($container === null) {
+            $containerConfig = ContainerConfig::create()
+                ->withDefinitions($config->get('console'))
+                ->withProviders($config->get('providers-console'))
+                ->withValidate($this->debug)
+                ->withDelegates($config->get('delegates-console'));
+
+            $container = new Container($containerConfig);
+        }
 
         if ($container instanceof Container) {
             $container = $container->get(ContainerInterface::class);
