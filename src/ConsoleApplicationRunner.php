@@ -6,14 +6,16 @@ namespace Yiisoft\Yii\Runner\Console;
 
 use ErrorException;
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 use Yiisoft\Config\Config;
 use Yiisoft\Di\Container;
 use Yiisoft\Di\ContainerConfig;
+use Yiisoft\Di\NotFoundException;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
-use Yiisoft\Definitions\Exception\NotFoundException;
 use Yiisoft\Definitions\Exception\NotInstantiableException;
 use Yiisoft\Yii\Console\Application;
 use Yiisoft\Yii\Console\ExitCode;
@@ -103,23 +105,13 @@ final class ConsoleApplicationRunner implements RunnerInterface
     /**
      * {@inheritDoc}
      *
-     * @throws CircularReferenceException|ErrorException|Exception|InvalidConfigException|NotFoundException
-     * @throws NotInstantiableException
+     * @throws CircularReferenceException|ErrorException|Exception|InvalidConfigException
+     * @throws ContainerExceptionInterface|NotFoundException|NotFoundExceptionInterface|NotInstantiableException
      */
     public function run(): void
     {
         $config = $this->config ?? ConfigFactory::create($this->rootPath, $this->environment);
-
-        $container = $this->container;
-        if ($container === null) {
-            $containerConfig = ContainerConfig::create()
-                ->withDefinitions($config->get('console'))
-                ->withProviders($config->get('providers-console'))
-                ->withValidate($this->debug)
-                ->withDelegates($config->get('delegates-console'));
-
-            $container = new Container($containerConfig);
-        }
+        $container = $this->container ?? $this->createDefaultContainer($config);
 
         if ($container instanceof Container) {
             $container = $container->get(ContainerInterface::class);
@@ -143,6 +135,28 @@ final class ConsoleApplicationRunner implements RunnerInterface
             $application->shutdown($exitCode);
             exit($exitCode);
         }
+    }
+
+    /**
+     * @throws ErrorException|InvalidConfigException
+     */
+    private function createDefaultContainer(Config $config): Container
+    {
+        $containerConfig = ContainerConfig::create()->withValidate($this->debug);
+
+        if ($config->has('console')) {
+            $containerConfig = $containerConfig->withDefinitions($config->get('console'));
+        }
+
+        if ($config->has('providers-console')) {
+            $containerConfig = $containerConfig->withProviders($config->get('providers-console'));
+        }
+
+        if ($config->has('delegates-console')) {
+            $containerConfig = $containerConfig->withDelegates($config->get('delegates-console'));
+        }
+
+        return new Container($containerConfig);
     }
 
     private function runBootstrap(ContainerInterface $container, array $bootstrapList): void
