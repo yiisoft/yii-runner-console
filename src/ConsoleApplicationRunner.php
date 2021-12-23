@@ -11,12 +11,13 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 use Yiisoft\Config\Config;
-use Yiisoft\Di\Container;
-use Yiisoft\Di\ContainerConfig;
-use Yiisoft\Di\NotFoundException;
+use Yiisoft\Config\ConfigPaths;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
 use Yiisoft\Definitions\Exception\NotInstantiableException;
+use Yiisoft\Di\Container;
+use Yiisoft\Di\ContainerConfig;
+use Yiisoft\Di\NotFoundException;
 use Yiisoft\Yii\Console\Application;
 use Yiisoft\Yii\Console\ExitCode;
 use Yiisoft\Yii\Console\Output\ConsoleBufferedOutput;
@@ -110,7 +111,7 @@ final class ConsoleApplicationRunner implements RunnerInterface
      */
     public function run(): void
     {
-        $config = $this->config ?? ConfigFactory::create($this->rootPath, $this->environment);
+        $config = $this->config ?? ConfigFactory::create(new ConfigPaths($this->rootPath, 'config'), $this->environment);
         $container = $this->container ?? $this->createDefaultContainer($config);
 
         if ($container instanceof Container) {
