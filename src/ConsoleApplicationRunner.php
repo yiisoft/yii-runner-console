@@ -10,33 +10,21 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
-use Yiisoft\Config\ConfigInterface;
-use Yiisoft\Config\ConfigPaths;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
 use Yiisoft\Definitions\Exception\NotInstantiableException;
 use Yiisoft\Di\Container;
-use Yiisoft\Di\ContainerConfig;
 use Yiisoft\Di\NotFoundException;
 use Yiisoft\Yii\Console\Application;
 use Yiisoft\Yii\Console\ExitCode;
 use Yiisoft\Yii\Console\Output\ConsoleBufferedOutput;
-use Yiisoft\Yii\Runner\BootstrapRunner;
-use Yiisoft\Yii\Runner\ConfigFactory;
-use Yiisoft\Yii\Runner\RunnerInterface;
+use Yiisoft\Yii\Runner\ApplicationRunner;
 
 /**
  * `ConsoleApplicationRunner` runs the Yii console application.
  */
-final class ConsoleApplicationRunner implements RunnerInterface
+final class ConsoleApplicationRunner extends ApplicationRunner
 {
-    private bool $debug;
-    private string $rootPath;
-    private ?string $environment;
-    private ?ConfigInterface $config = null;
-    private ?ContainerInterface $container = null;
-    private ?string $bootstrapGroup = 'bootstrap-console';
-
     /**
      * @param string $rootPath The absolute path to the project root.
      * @param bool $debug Whether the debug mode is enabled.
@@ -44,63 +32,9 @@ final class ConsoleApplicationRunner implements RunnerInterface
      */
     public function __construct(string $rootPath, bool $debug, ?string $environment)
     {
-        $this->rootPath = $rootPath;
-        $this->debug = $debug;
-        $this->environment = $environment;
-    }
-
-    /**
-     * Returns a new instance with the specified bootstrap configuration group name.
-     *
-     * @param string $bootstrapGroup The bootstrap configuration group name.
-     *
-     * @return self
-     */
-    public function withBootstrap(string $bootstrapGroup): self
-    {
-        $new = clone $this;
-        $new->bootstrapGroup = $bootstrapGroup;
-        return $new;
-    }
-
-    /**
-     * Returns a new instance and disables the use of bootstrap configuration group.
-     *
-     * @return self
-     */
-    public function withoutBootstrap(): self
-    {
-        $new = clone $this;
-        $new->bootstrapGroup = null;
-        return $new;
-    }
-
-    /**
-     * Returns a new instance with the specified config instance {@see ConfigInterface}.
-     *
-     * @param ConfigInterface $config The config instance.
-     *
-     * @return self
-     */
-    public function withConfig(ConfigInterface $config): self
-    {
-        $new = clone $this;
-        $new->config = $config;
-        return $new;
-    }
-
-    /**
-     * Returns a new instance with the specified container instance {@see ContainerInterface}.
-     *
-     * @param ContainerInterface $container The container instance.
-     *
-     * @return self
-     */
-    public function withContainer(ContainerInterface $container): self
-    {
-        $new = clone $this;
-        $new->container = $container;
-        return $new;
+        parent::__construct($rootPath, $debug, $environment);
+        $this->bootstrapGroup = 'bootstrap-console';
+        $this->eventsGroup = 'events-console';
     }
 
     /**
@@ -111,17 +45,15 @@ final class ConsoleApplicationRunner implements RunnerInterface
      */
     public function run(): void
     {
-        $config = $this->config ?? ConfigFactory::create(new ConfigPaths($this->rootPath, 'config'), $this->environment);
-        $container = $this->container ?? $this->createDefaultContainer($config);
+        $config = $this->config ?? $this->createConfig();
+        $container = $this->container ?? $this->createContainer($config, 'console');
 
         if ($container instanceof Container) {
             $container = $container->get(ContainerInterface::class);
         }
 
-        // Run bootstrap
-        if ($this->bootstrapGroup !== null) {
-            $this->runBootstrap($container, $config->get($this->bootstrapGroup));
-        }
+        $this->runBootstrap($config, $container);
+        $this->checkEvents($config, $container);
 
         /** @var Application */
         $application = $container->get(Application::class);
@@ -136,32 +68,5 @@ final class ConsoleApplicationRunner implements RunnerInterface
             $application->shutdown($exitCode);
             exit($exitCode);
         }
-    }
-
-    /**
-     * @throws ErrorException|InvalidConfigException
-     */
-    private function createDefaultContainer(ConfigInterface $config): Container
-    {
-        $containerConfig = ContainerConfig::create()->withValidate($this->debug);
-
-        if ($config->has('console')) {
-            $containerConfig = $containerConfig->withDefinitions($config->get('console'));
-        }
-
-        if ($config->has('providers-console')) {
-            $containerConfig = $containerConfig->withProviders($config->get('providers-console'));
-        }
-
-        if ($config->has('delegates-console')) {
-            $containerConfig = $containerConfig->withDelegates($config->get('delegates-console'));
-        }
-
-        return new Container($containerConfig);
-    }
-
-    private function runBootstrap(ContainerInterface $container, array $bootstrapList): void
-    {
-        (new BootstrapRunner($container, $bootstrapList))->run();
     }
 }
