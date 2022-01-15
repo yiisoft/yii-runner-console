@@ -7,13 +7,11 @@ namespace Yiisoft\Yii\Runner\Console;
 use ErrorException;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Throwable;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
 use Yiisoft\Definitions\Exception\NotInstantiableException;
-use Yiisoft\Di\Container;
 use Yiisoft\Di\NotFoundException;
 use Yiisoft\Yii\Console\Application;
 use Yiisoft\Yii\Console\ExitCode;
@@ -45,12 +43,8 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function run(): void
     {
-        $config = $this->config ?? $this->createConfig();
-        $container = $this->container ?? $this->createContainer($config, 'console');
-
-        if ($container instanceof Container) {
-            $container = $container->get(ContainerInterface::class);
-        }
+        $config = $this->getConfig();
+        $container = $this->getContainer($config, 'console');
 
         $this->runBootstrap($config, $container);
         $this->checkEvents($config, $container);
