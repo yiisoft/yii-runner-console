@@ -38,19 +38,11 @@
         "yiisoft/yii-runner": "@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "roave/infection-static-analysis-plugin": "^1.14",
-        "spatie/phpunit-watcher": "^1.23",
         "vimeo/psalm": "^4.18"
     },
     "autoload": {
         "psr-4": {
             "Yiisoft\\Yii\\Runner\\Console\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Yiisoft\\Yii\\Runner\\Console\\Tests\\": "tests"
         }
     },
     "extra": {
@@ -60,9 +52,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "scripts": {
-        "test": "phpunit --testdox --no-interaction",
-        "test-watch": "phpunit-watcher watch"
     }
 }

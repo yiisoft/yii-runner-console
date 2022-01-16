@@ -10,8 +10,6 @@
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-runner-console/downloads.png)](https://packagist.org/packages/yiisoft/yii-runner-console)
 [![Build status](https://github.com/yiisoft/yii-runner-console/workflows/build/badge.svg)](https://github.com/yiisoft/yii-runner-console/actions?query=workflow%3Abuild)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/?branch=master)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fyiisoft%2Fyii-runner-console%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/yiisoft/yii-runner-console/master)
 [![static analysis](https://github.com/yiisoft/yii-runner-console/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/yii-runner-console/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yiisoft/yii-runner-console/coverage.svg)](https://shepherd.dev/github/yiisoft/yii-runner-console)
 
@@ -104,23 +102,6 @@ $runner = $runner->withContainer($container);
 ```
 
 ## Testing
-
-### Unit testing
-
-The package is tested with [PHPUnit](https://phpunit.de/). To run tests:
-
-```shell
-./vendor/bin/phpunit
-```
-
-### Mutation testing
-
-The package tests are checked with [Infection](https://infection.github.io/) mutation framework with
-[Infection Static Analysis Plugin](https://github.com/Roave/infection-static-analysis-plugin). To run it:
-
-```shell
-./vendor/bin/roave-infection-static-analysis-plugin
-```
 
 ### Static analysis
 
