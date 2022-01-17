@@ -28,7 +28,7 @@ build:
 
       tests:
         override:
-          - command: vendor/bin/codecept run --coverage-xml
+          - command: vendor/bin/codecept run --coverage --coverage-xml
             on_node: 1
             coverage:
               file: tests/_output/coverage.xml
