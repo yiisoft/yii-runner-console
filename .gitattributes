@@ -29,6 +29,7 @@
 /.phpunit-watcher.yml   export-ignore
 /.scrutinizer.yml       export-ignore
 /.styleci.yml           export-ignore
+/codeception.yml        export-ignore
 /infection.json.dist    export-ignore
 /phpunit.xml.dist       export-ignore
 /psalm.xml              export-ignore

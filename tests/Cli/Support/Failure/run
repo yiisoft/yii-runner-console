@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Yiisoft\Yii\Runner\Console\ConsoleApplicationRunner;
+
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+
+$runner = new ConsoleApplicationRunner(__DIR__, true, null);
+$runner->run();
