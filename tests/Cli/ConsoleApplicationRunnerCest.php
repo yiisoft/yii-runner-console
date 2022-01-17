@@ -15,6 +15,13 @@ final class ConsoleApplicationRunnerCest
         $I->seeInShellOutput('Yii Console');
     }
 
+    public function testSuccessCommand(CliTester $I): void
+    {
+        $I->runShellCommand(__DIR__ . '/Support/Success/run hello');
+        $I->dontSeeInShellOutput('Yii Console');
+        $I->seeInShellOutput('Hello');
+    }
+
     public function testFailure(CliTester $I): void
     {
         $I->runShellCommand(__DIR__ . '/Support/Failure/run', false);
