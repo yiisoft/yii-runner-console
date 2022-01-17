@@ -103,6 +103,12 @@ $runner = $runner->withContainer($container);
 
 ## Testing
 
+The package is tested with [Codeception](https://codeception.com/). To run tests:
+
+```shell
+./vendor/bin/codecept run
+```
+
 ### Static analysis
 
 The code is statically analyzed with [Psalm](https://psalm.dev/). To run static analysis:
