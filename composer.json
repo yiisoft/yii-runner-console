@@ -56,7 +56,11 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "yiisoft/config": true
+        }
     },
     "scripts": {
         "test": "codecept run"
