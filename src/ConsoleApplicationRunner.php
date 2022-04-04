@@ -49,7 +49,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
         $this->runBootstrap($config, $container);
         $this->checkEvents($config, $container);
 
-        /** @var Application */
+        /** @var Application $application */
         $application = $container->get(Application::class);
         $exitCode = ExitCode::UNSPECIFIED_ERROR;
 
