@@ -30,7 +30,7 @@
     "require": {
         "php": "^8.0",
         "yiisoft/config": "^1.1",
-        "yiisoft/definitions": "^1.0",
+        "yiisoft/definitions": "^1.0|^2.0",
         "yiisoft/di": "^1.0",
         "yiisoft/yii-console": "^1.0",
         "yiisoft/yii-runner": "^1.0"
