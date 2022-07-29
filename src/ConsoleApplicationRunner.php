@@ -8,6 +8,7 @@ use ErrorException;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Symfony\Component\Console\Input\ArgvInput;
 use Throwable;
 use Yiisoft\Definitions\Exception\CircularReferenceException;
 use Yiisoft\Definitions\Exception\InvalidConfigException;
@@ -53,11 +54,14 @@ final class ConsoleApplicationRunner extends ApplicationRunner
         $application = $container->get(Application::class);
         $exitCode = ExitCode::UNSPECIFIED_ERROR;
 
+        $input = new ArgvInput();
+        $output = new ConsoleBufferedOutput();
+
         try {
-            $application->start();
-            $exitCode = $application->run(null, new ConsoleBufferedOutput());
+            $application->start($input);
+            $exitCode = $application->run($input, $output);
         } catch (Throwable $throwable) {
-            $application->renderThrowable($throwable, new ConsoleBufferedOutput());
+            $application->renderThrowable($throwable, $output);
         } finally {
             $application->shutdown($exitCode);
             exit($exitCode);
