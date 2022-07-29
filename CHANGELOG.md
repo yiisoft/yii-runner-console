@@ -1,6 +1,6 @@
 # Yii Runner Console Change Log
 
-## 1.0.2 under development
+## 1.1.0 July 29, 2022
 
 - Chg: #21: Add passing input aggregate to the console application (@xepozz)
 
