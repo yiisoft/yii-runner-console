@@ -2,7 +2,7 @@
 
 ## 1.1.1 under development
 
-- no changes in this release.
+- Bug #23: Add `symfony/console` dependency (@vjik)
 
 ## 1.1.0 July 29, 2022
 
