@@ -1,6 +1,6 @@
 # Yii Runner Console Change Log
 
-## 1.1.1 under development
+## 1.1.1 November 10, 2022
 
 - Enh #24: Add support for `yiisoft/definitions` version `^3.0` (@vjik)
 - Bug #23: Add `symfony/console` dependency (@vjik)
