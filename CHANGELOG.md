@@ -2,6 +2,7 @@
 
 ## 1.1.1 under development
 
+- Enh #24: Add support for `yiisoft/definitions` version `^3.0` (@vjik)
 - Bug #23: Add `symfony/console` dependency (@vjik)
 
 ## 1.1.0 July 29, 2022
@@ -10,7 +11,7 @@
 
 ## 1.0.1 June 17, 2022
 
-- Enh #19: Add support for `yiisoft/definitions` version `^2.0` (vjik)
+- Enh #19: Add support for `yiisoft/definitions` version `^2.0` (@vjik)
 
 ## 1.0.0 January 17, 2022
 
