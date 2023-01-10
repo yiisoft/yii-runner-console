@@ -31,7 +31,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function __construct(string $rootPath, bool $debug, ?string $environment)
     {
-        parent::__construct($rootPath, $debug, $environment);
+        parent::__construct($rootPath, $debug, 'console', $environment);
         $this->bootstrapGroup = 'bootstrap-console';
         $this->eventsGroup = 'events-console';
     }
@@ -44,9 +44,9 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function run(): void
     {
-        $config = $this->getConfig();
-        $container = $this->getContainer($config, 'console');
+        $container = $this->getContainer();
 
+        $config = $this->getConfig();
         $this->runBootstrap($config, $container);
         $this->checkEvents($config, $container);
 
