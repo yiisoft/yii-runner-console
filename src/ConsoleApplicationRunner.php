@@ -44,14 +44,11 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function run(): void
     {
-        $container = $this->getContainer();
-
-        $config = $this->getConfig();
-        $this->runBootstrap($config, $container);
-        $this->checkEvents($config, $container);
+        $this->runBootstrap();
+        $this->checkEvents();
 
         /** @var Application $application */
-        $application = $container->get(Application::class);
+        $application = $this->getContainer()->get(Application::class);
         $exitCode = ExitCode::UNSPECIFIED_ERROR;
 
         $input = new ArgvInput();
