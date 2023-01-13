@@ -31,7 +31,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function __construct(string $rootPath, bool $debug, ?string $environment)
     {
-        parent::__construct($rootPath, $debug, $environment);
+        parent::__construct($rootPath, $debug, 'console', $environment);
         $this->bootstrapGroup = 'bootstrap-console';
         $this->eventsGroup = 'events-console';
     }
@@ -44,14 +44,11 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      */
     public function run(): void
     {
-        $config = $this->getConfig();
-        $container = $this->getContainer($config, 'console');
-
-        $this->runBootstrap($config, $container);
-        $this->checkEvents($config, $container);
+        $this->runBootstrap();
+        $this->checkEvents();
 
         /** @var Application $application */
-        $application = $container->get(Application::class);
+        $application = $this->getContainer()->get(Application::class);
         $exitCode = ExitCode::UNSPECIFIED_ERROR;
 
         $input = new ArgvInput();

@@ -1,8 +1,8 @@
 # Yii Runner Console Change Log
 
-## 1.1.2 under development
+## 1.2.0 under development
 
-- no changes in this release.
+- Enh #30: Adapt to `yiisoft/yii-runner` of version `^2.0` (@vjik)
 
 ## 1.1.1 November 10, 2022
 
