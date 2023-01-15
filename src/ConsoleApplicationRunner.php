@@ -41,7 +41,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
         ?string $eventsGroup = 'events-console',
         ?string $environment = null,
     ) {
-        parent::__construct($rootPath, $debug, 'console', $environment);
+        parent::__construct($rootPath, $debug, $containerConfigGroup, $environment);
         $this->bootstrapGroup = $bootstrapGroup;
         $this->eventsGroup = $eventsGroup;
     }
