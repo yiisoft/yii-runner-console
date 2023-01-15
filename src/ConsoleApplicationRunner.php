@@ -27,6 +27,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
     /**
      * @param string $rootPath The absolute path to the project root.
      * @param bool $debug Whether the debug mode is enabled.
+     * @param string $paramsConfigGroup The config parameters group name.
      * @param string $containerConfigGroup The container configuration group name.
      * @param string|null $bootstrapGroup The bootstrap configuration group name.
      * @param string|null $eventsGroup The event configuration group name to check. The configuration of events is
@@ -36,12 +37,13 @@ final class ConsoleApplicationRunner extends ApplicationRunner
     public function __construct(
         string $rootPath,
         bool $debug,
+        string $paramsConfigGroup = 'params',
         string $containerConfigGroup = 'console',
         ?string $bootstrapGroup = 'bootstrap-console',
         ?string $eventsGroup = 'events-console',
         ?string $environment = null,
     ) {
-        parent::__construct($rootPath, $debug, $containerConfigGroup, $environment);
+        parent::__construct($rootPath, $debug, $paramsConfigGroup, $containerConfigGroup, $environment);
         $this->bootstrapGroup = $bootstrapGroup;
         $this->eventsGroup = $eventsGroup;
     }
