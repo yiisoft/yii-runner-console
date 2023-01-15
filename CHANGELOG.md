@@ -3,8 +3,8 @@
 ## 1.2.0 under development
 
 - Enh #30: Adapt to `yiisoft/yii-runner` of version `^2.0` (@vjik)
-- New #31: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional (`null` by default) and 
-  add new parameters that set config group names for container, bootstrap and events (@vjik)
+- New #31, #32: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional (`null` by default)
+  and add new parameters that set config group names for container, bootstrap and events (@vjik)
 
 ## 1.1.1 November 10, 2022
 
