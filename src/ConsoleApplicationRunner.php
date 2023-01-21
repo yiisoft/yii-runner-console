@@ -27,25 +27,46 @@ final class ConsoleApplicationRunner extends ApplicationRunner
     /**
      * @param string $rootPath The absolute path to the project root.
      * @param bool $debug Whether the debug mode is enabled.
-     * @param string $paramsConfigGroup The config parameters group name.
-     * @param string $containerConfigGroup The container configuration group name.
-     * @param string|null $bootstrapGroup The bootstrap configuration group name.
-     * @param string|null $eventsGroup The event configuration group name to check. The configuration of events is
+     * @param string $bootstrapGroup The bootstrap configuration group name.
+     * @param string $eventsGroup The event configuration group name to check. The configuration of events is
      * checked in debug mode only.
+     * @param string $diGroup The container configuration group name.
+     * @param string $paramsGroup The config parameters group name.
      * @param string|null $environment The environment name.
+     *
+     * @psalm-param list<string> $nestedParamsGroups
+     * @psalm-param list<string> $nestedEventsGroups
      */
     public function __construct(
         string $rootPath,
-        bool $debug,
-        string $paramsConfigGroup = 'params',
-        string $containerConfigGroup = 'console',
-        ?string $bootstrapGroup = 'bootstrap-console',
-        ?string $eventsGroup = 'events-console',
+        bool $debug = false,
+        bool $checkEvents = false,
         ?string $environment = null,
+        string $bootstrapGroup = 'bootstrap-console',
+        string $eventsGroup = 'events-console',
+        string $diGroup = 'di-console',
+        string $diProvidersGroup = 'di-providers-console',
+        string $diDelegatesGroup = 'di-delegates-console',
+        string $diTagsGroup = 'di-tags-console',
+        string $paramsGroup = 'params-console',
+        array $nestedParamsGroups = ['params'],
+        array $nestedEventsGroups = ['events'],
     ) {
-        parent::__construct($rootPath, $debug, $paramsConfigGroup, $containerConfigGroup, $environment);
-        $this->bootstrapGroup = $bootstrapGroup;
-        $this->eventsGroup = $eventsGroup;
+        parent::__construct(
+            $rootPath,
+            $debug,
+            $checkEvents,
+            $environment,
+            $bootstrapGroup,
+            $eventsGroup,
+            $diGroup,
+            $diProvidersGroup,
+            $diDelegatesGroup,
+            $diTagsGroup,
+            $paramsGroup,
+            $nestedParamsGroups,
+            $nestedEventsGroups,
+        );
     }
 
     /**
