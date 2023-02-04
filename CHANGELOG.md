@@ -3,7 +3,8 @@
 ## 2.0.0 under development
 
 - Enh #30: Adapt to `yiisoft/yii-runner` of version `^2.0` (@vjik)
-- New #31, #32: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional, default `null` (@vjik)
+- New #31, #32: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional,
+  default `null` (@vjik)
 - New #31, #32, #33, #34: Add ability to configure all config group names (@vjik)
 - New #34: In the `ConsoleApplicationRunner` constructor make parameter "debug" optional, default `false` (@vjik)
 - New #34: Add parameter `$checkEvents` to `ConsoleApplicationRunner` constructor (@vjik)
