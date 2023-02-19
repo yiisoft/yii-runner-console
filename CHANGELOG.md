@@ -8,6 +8,7 @@
 - New #31, #32, #33, #34: Add ability to configure all config group names (@vjik)
 - New #34: In the `ConsoleApplicationRunner` constructor make parameter "debug" optional, default `false` (@vjik)
 - New #34: Add parameter `$checkEvents` to `ConsoleApplicationRunner` constructor (@vjik)
+- Chg #34: Raise required version of `yiisoft/yii-console` to `^2.0` and `yiisoft/yii-runner` to `^2.0` (@vjik)
 
 ## 1.1.1 November 10, 2022
 
