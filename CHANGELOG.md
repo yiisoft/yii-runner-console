@@ -1,11 +1,14 @@
 # Yii Runner Console Change Log
 
-## 1.2.0 under development
+## 2.0.0 under development
 
 - Enh #30: Adapt to `yiisoft/yii-runner` of version `^2.0` (@vjik)
-- New #31, #32: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional (`null` by default)
-  and add new parameters that set config group names for container, bootstrap and events (@vjik)
-- New #33: In the `ConsoleApplicationRunner` constructor add parameter that set config params group name (@vjik)
+- New #31, #32: In the `ConsoleApplicationRunner` constructor make parameter "environment" optional,
+  default `null` (@vjik)
+- New #31, #32, #33, #34: Add ability to configure all config group names (@vjik)
+- New #34: In the `ConsoleApplicationRunner` constructor make parameter "debug" optional, default `false` (@vjik)
+- New #34: Add parameter `$checkEvents` to `ConsoleApplicationRunner` constructor (@vjik)
+- Chg #34: Raise required version of `yiisoft/yii-console` to `^2.0` and `yiisoft/yii-runner` to `^2.0` (@vjik)
 
 ## 1.1.1 November 10, 2022
 

@@ -33,8 +33,8 @@
         "yiisoft/config": "^1.1",
         "yiisoft/definitions": "^1.0|^2.0|^3.0",
         "yiisoft/di": "^1.0",
-        "yiisoft/yii-console": "^1.0",
-        "yiisoft/yii-runner": "^1.0"
+        "yiisoft/yii-console": "^2.0",
+        "yiisoft/yii-runner": "^2.0"
     },
     "require-dev": {
         "codeception/codeception": "^5.0",

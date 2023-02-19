@@ -5,14 +5,14 @@ declare(strict_types=1);
 // Do not edit. Content will be replaced.
 return [
     '/' => [
-        'params' => [
+        'params-console' => [
             '/' => [
-                'params.php',
+                'params-console.php',
             ],
         ],
-        'console' => [
+        'di-console' => [
             '/' => [
-                'console.php',
+                'di-console.php',
             ],
         ],
         'events-console' => [
@@ -20,14 +20,14 @@ return [
                 'events-console.php',
             ],
         ],
-        'providers-console' => [
+        'di-providers-console' => [
             '/' => [
-                'providers-console.php',
+                'di-providers-console.php',
             ],
         ],
-        'delegates-console' => [
+        'di-delegates-console' => [
             '/' => [
-                'delegates-console.php',
+                'di-delegates-console.php',
             ],
         ],
         'bootstrap-console' => [
