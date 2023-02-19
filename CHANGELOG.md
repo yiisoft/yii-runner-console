@@ -1,5 +1,9 @@
 # Yii Runner Console Change Log
 
+## 2.0.1 under development
+
+- no changes in this release.
+
 ## 2.0.0 February 19, 2023
 
 - Chg #34: Raise required version of `yiisoft/yii-console` to `^2.0` and `yiisoft/yii-runner` to `^2.0` (@vjik)
