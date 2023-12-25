@@ -40,9 +40,11 @@ final class ConsoleApplicationRunner extends ApplicationRunner
      * This is needed for recursive merging of parameters.
      * @param array $nestedEventsGroups Configuration group names that are included into events' configuration group.
      * This is needed for reverse and recursive merge of events' configurations.
+     * @param object[] $configModifiers Modifiers for {@see Config}.
      *
      * @psalm-param list<string> $nestedParamsGroups
      * @psalm-param list<string> $nestedEventsGroups
+     * @psalm-param list<object> $configModifiers
      */
     public function __construct(
         string $rootPath,
@@ -58,6 +60,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
         string $paramsGroup = 'params-console',
         array $nestedParamsGroups = ['params'],
         array $nestedEventsGroups = ['events'],
+        array $configModifiers = [],
     ) {
         parent::__construct(
             $rootPath,
@@ -73,6 +76,7 @@ final class ConsoleApplicationRunner extends ApplicationRunner
             $paramsGroup,
             $nestedParamsGroups,
             $nestedEventsGroups,
+            $configModifiers,
         );
     }
 
