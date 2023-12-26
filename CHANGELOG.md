@@ -1,5 +1,9 @@
 # Yii Runner Console Change Log
 
+## 2.1.2 under development
+
+- no changes in this release.
+
 ## 2.1.1 December 26, 2023
 
 - Enh #44: Add support for `symfony/console` of version `^7.0` (@vjik)
