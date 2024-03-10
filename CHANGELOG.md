@@ -2,7 +2,7 @@
 
 ## 2.1.2 under development
 
-- no changes in this release.
+- New #50: Add ability to set custom config merge plan file path, config and vendor directories (@vjik)
 
 ## 2.1.1 December 26, 2023
 
