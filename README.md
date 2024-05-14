@@ -32,6 +32,11 @@ composer require yiisoft/yii-runner-console
 In your console entry script do the following:
 
 ```php
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
 use Yiisoft\Yii\Runner\Console\ConsoleApplicationRunner;
 
 require_once __DIR__ . '/autoload.php';
