@@ -9,7 +9,7 @@
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii-runner-console/v/stable.png)](https://packagist.org/packages/yiisoft/yii-runner-console)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii-runner-console/downloads.png)](https://packagist.org/packages/yiisoft/yii-runner-console)
 [![Build status](https://github.com/yiisoft/yii-runner-console/workflows/build/badge.svg)](https://github.com/yiisoft/yii-runner-console/actions?query=workflow%3Abuild)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiisoft/yii-runner-console/?branch=master)
+[![Code Coverage](https://codecov.io/gh/yiisoft/yii-runner-console/branch/master/graph/badge.svg)](https://codecov.io/gh/yiisoft/yii-runner-console)
 [![static analysis](https://github.com/yiisoft/yii-runner-console/workflows/static%20analysis/badge.svg)](https://github.com/yiisoft/yii-runner-console/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yiisoft/yii-runner-console/coverage.svg)](https://shepherd.dev/github/yiisoft/yii-runner-console)
 
