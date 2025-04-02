@@ -12,7 +12,7 @@ use Throwable;
 
 final class FailureApplication extends Application
 {
-    public function run(InputInterface $input = null, OutputInterface $output = null): int
+    public function run(?InputInterface $input = null, ?OutputInterface $output = null): int
     {
         throw new RuntimeException('Application failed');
     }
