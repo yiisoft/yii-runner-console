@@ -17,7 +17,7 @@ The package contains a bootstrap for running Yii3 console application.
 
 ## Requirements
 
-- PHP 8.0 or higher.
+- PHP 8.0 - 8.5.
 
 ## Installation
 
