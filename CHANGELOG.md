@@ -1,5 +1,9 @@
 # Yii Runner Console Change Log
 
+## 2.2.2 under development
+
+- no changes in this release.
+
 ## 2.2.1 December 20, 2025
 
 - Chg #56, #58: Change PHP constraint in `composer.json` to `8.0 - 8.5` (@vjik)
