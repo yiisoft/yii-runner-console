@@ -1,6 +1,6 @@
 # Yii Runner Console Change Log
 
-## 2.2.1 under development
+## 2.2.1 December 20, 2025
 
 - Chg #56, #58: Change PHP constraint in `composer.json` to `8.0 - 8.5` (@vjik)
 - Enh #59: Add Symfony Console 8 support (@vjik)
