@@ -3,6 +3,7 @@
 ## 2.2.1 under development
 
 - Chg #56, #58: Change PHP constraint in `composer.json` to `8.0 - 8.5` (@vjik)
+- Enh #59: Add Symfony Console 8 support (@vjik)
 
 ## 2.2.0 March 10, 2024
 
