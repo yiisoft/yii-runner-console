@@ -17,13 +17,9 @@ final class FailureApplication extends Application
         throw new RuntimeException('Application failed');
     }
 
-    public function start(): void
-    {
-    }
+    public function start(): void {}
 
-    public function shutdown(int $exitCode): void
-    {
-    }
+    public function shutdown(int $exitCode): void {}
 
     public function renderThrowable(Throwable $e, OutputInterface $output): void
     {
