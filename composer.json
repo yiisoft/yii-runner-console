@@ -41,7 +41,9 @@
         "codeception/codeception": "^5.1.2",
         "codeception/module-cli": "^2.0.1",
         "friendsofphp/php-cs-fixer": "^3.95",
+        "psr/container": "^2.0",
         "rector/rector": "^2.0.11",
+        "shipmonk/composer-dependency-analyser": "^1.8",
         "yiisoft/code-style": "^1.1"
     },
     "autoload": {
@@ -75,6 +77,7 @@
     "scripts": {
         "test": "codecept run",
         "rector": "rector",
-        "cs-fix": "php-cs-fixer fix"
+        "cs-fix": "php-cs-fixer fix",
+        "dependency-analyser": "composer-dependency-analyser"
     }
 }
