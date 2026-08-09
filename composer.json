@@ -30,9 +30,6 @@
     "require": {
         "php": "8.0 - 8.5",
         "symfony/console": "^5.4 || ^6.0 || ^7.0 || ^8.0",
-        "yiisoft/config": "^1.1",
-        "yiisoft/definitions": "^1.0 || ^2.0 || ^3.0",
-        "yiisoft/di": "^1.0",
         "yiisoft/yii-console": "^2.0",
         "yiisoft/yii-runner": "^2.2"
     },
@@ -41,7 +38,9 @@
         "codeception/codeception": "^5.1.2",
         "codeception/module-cli": "^2.0.1",
         "friendsofphp/php-cs-fixer": "^3.95",
+        "psr/container": "^2.0",
         "rector/rector": "^2.0.11",
+        "shipmonk/composer-dependency-analyser": "^1.8",
         "yiisoft/code-style": "^1.1"
     },
     "autoload": {
@@ -75,6 +74,7 @@
     "scripts": {
         "test": "codecept run",
         "rector": "rector",
-        "cs-fix": "php-cs-fixer fix"
+        "cs-fix": "php-cs-fixer fix",
+        "dependency-analyser": "composer-dependency-analyser"
     }
 }

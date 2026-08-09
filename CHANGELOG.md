@@ -2,7 +2,7 @@
 
 ## 2.2.2 under development
 
-- no changes in this release.
+- Enh #67: Remove unused `yiisoft/config`, `yiisoft/definitions` and `yiisoft/di` dependencies (@vjik)
 
 ## 2.2.1 December 20, 2025
 
